@@ -21,10 +21,14 @@ import Orders from "../../reusable/Orders";
 import Copyright from "../../reusable/Copyright";
 import AppBar from "@mui/material/AppBar";
 import Drawer from "@mui/material/Drawer";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import { logout } from "../../../redux/userSlice";
+import { useDispatch } from "react-redux";
 
 const mdTheme = createTheme();
 
 function DashboardContent() {
+	const dispatch = useDispatch();
 	const [open, setOpen] = React.useState(true);
 	const toggleDrawer = () => {
 		setOpen(!open);
@@ -64,6 +68,11 @@ function DashboardContent() {
 						<IconButton color="inherit">
 							<Badge badgeContent={4} color="secondary">
 								<NotificationsIcon />
+							</Badge>
+						</IconButton>
+						<IconButton color="inherit">
+							<Badge color="secondary" onClick={dispatch(logout())}>
+								<LogoutOutlinedIcon />
 							</Badge>
 						</IconButton>
 					</Toolbar>

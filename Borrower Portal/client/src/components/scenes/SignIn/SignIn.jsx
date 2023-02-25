@@ -11,31 +11,38 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-const logo = require("../../../assets/purple-logo.png");
+import { login } from "../../../redux/userSlice";
+import Copyright from "../../reusable/Copyright";
+import { useDispatch, useSelector } from "react-redux";
 
-function Copyright(props) {
-	return (
-		<Typography variant="body2" color="text.secondary" align="center" {...props}>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
+const logo = require("../../../assets/purple-logo.png");
 
 const theme = createTheme();
 
 export default function SignIn() {
-	const handleSubmit = (event) => {
+	const dispatch = useDispatch();
+
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
+		const user = {
 			email: data.get("email"),
 			password: data.get("password"),
-		});
+		};
+		await authenticateUser(user);
+	};
+
+	const authenticateUser = (data) => {
+		fetch("https://localHost:4000/users/login", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ email: data.email, password: data.password }),
+		})
+			.then((response) => response.json())
+			.then((response) => console.log(JSON.stringify(response)));
 	};
 
 	return (
@@ -54,7 +61,7 @@ export default function SignIn() {
 					<Typography component="h1" variant="h5">
 						Sign in
 					</Typography>
-					<Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+					<Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleSubmit}>
 						<TextField
 							margin="normal"
 							required
@@ -89,7 +96,7 @@ export default function SignIn() {
 								</Link>
 							</Grid>
 							<Grid item>
-								<Link href="#" variant="body2">
+								<Link href="/signup" variant="body2">
 									{"Don't have an account? Sign Up"}
 								</Link>
 							</Grid>

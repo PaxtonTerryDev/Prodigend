@@ -35,10 +35,25 @@ export default function SignUp() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		console.log({
+		const user = {
+			firstName: data.get("firstName"),
+			lastName: data.get("lastName"),
 			email: data.get("email"),
 			password: data.get("password"),
-		});
+		};
+		console.log(user);
+		fetch("https://localhost:4000/users", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: user,
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log("success:", data);
+			})
+			.catch((error) => {
+				console.error("Oi fuck me", error);
+			});
 	};
 
 	return (
@@ -114,7 +129,7 @@ export default function SignUp() {
 						</Button>
 						<Grid container justifyContent="flex-end">
 							<Grid item>
-								<Link href="#" variant="body2">
+								<Link href="/" variant="body2">
 									Already have an account? Sign in
 								</Link>
 							</Grid>
