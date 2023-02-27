@@ -1,43 +1,81 @@
 const express = require("express");
-const app = express();
+const mongoose = require("mongoose");
+const cors = require("cors");
 const bcrypt = require("bcrypt");
 
+const app = express();
 app.use(express.json());
+app.use(cors());
 
-const users = [];
+// Encrypt borrower provided password
+const encrypt = (password) => {
+	return bcrypt.hashSync(password, 10);
+};
 
-app.get("/users", (req, res) => {
+mongoose
+	.connect("mongodb://127.0.0.1:27017/prodigend", {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	})
+	.then(() => console.log("Connected to DB"))
+	.catch(console.error);
+
+const User = require("./schemas/users");
+
+// Get list of users
+app.get("/users", async (req, res) => {
+	const users = await User.find();
+
 	res.json(users);
 });
 
-app.post("/users", async (req, res) => {
-	try {
-		const hashedPassword = await bcrypt.hash(req.body.password, 10);
-		const user = {
-			name: req.body.name,
-			password: hashedPassword,
-		};
-		users.push(user);
-		res.status(201).send();
-	} catch {
-		res.status(500).send();
-	}
+// Create new user
+app.post("/users/new", (req, res) => {
+	const encryptedPassword = encrypt(req.body.password);
+	const user = new User({
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
+		email: req.body.email,
+		password: encryptedPassword,
+		subscribed: req.body.subscribed,
+	});
+
+	console.log(user);
+
+	user.save();
+
+	res.json(user);
 });
 
-app.post("/users/login", async (req, res) => {
-	const user = users.find((user) => (user.name = req.body.name));
-	if (user == null) {
-		return res.status(400).send("Cannot find user");
-	}
-	try {
-		if (await bcrypt.compare(req.body.password, user.password)) {
-			res.send("Success");
-		} else {
-			res.send("Naughty Naughty");
-		}
-	} catch {
-		res.status(500).send();
-	}
+// Delete user
+
+app.delete("/users/delete/:id", async (req, res) => {
+	const result = await User.findByIdAndDelete(req.params.id);
+
+	res.json(result);
 });
 
-app.listen(4000);
+// Update subscription status
+
+// ON
+app.put("/users/subscriptionOn/:id", async (req, res) => {
+	const user = await User.findById(req.params.id);
+	user.subscribed = true;
+
+	user.save();
+
+	res.json(user);
+});
+// OFF
+app.put("/users/subscriptionOff/:id", async (req, res) => {
+	const user = await User.findById(req.params.id);
+	user.subscribed = false;
+
+	user.save();
+
+	res.json(user);
+});
+
+app.use(express.json());
+
+app.listen(4000, () => console.log("Listening on Port 4000..."));

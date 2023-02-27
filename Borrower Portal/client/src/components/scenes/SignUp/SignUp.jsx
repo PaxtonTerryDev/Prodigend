@@ -9,51 +9,43 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import "./styles.css";
-
+import Copyright from "../../reusable/Copyright";
+import { useState } from "react";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 const logo = require("../../../assets/purple-logo.png");
 
-function Copyright(props) {
-	return (
-		<Typography variant="body2" color="text.secondary" align="center" {...props}>
-			{"Copyright © "}
-			<Link color="inherit" href="https://mui.com/">
-				Your Website
-			</Link>{" "}
-			{new Date().getFullYear()}
-			{"."}
-		</Typography>
-	);
-}
-
 const theme = createTheme();
 
 export default function SignUp() {
-	const handleSubmit = (event) => {
+	const server = "http://localhost:4000";
+	const [allowEmails, setAllowEmails] = useState(false);
+
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = new FormData(event.currentTarget);
-		const user = {
+		const newUser = {
 			firstName: data.get("firstName"),
 			lastName: data.get("lastName"),
 			email: data.get("email"),
 			password: data.get("password"),
+			subscribed: allowEmails,
 		};
-		console.log(user);
-		fetch("https://localhost:4000/users", {
+		await fetch(`${server}/users/new`, {
 			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: user,
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(newUser),
 		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log("success:", data);
-			})
-			.catch((error) => {
-				console.error("Oi fuck me", error);
-			});
+			.then((response) => console.log("user created", response))
+			.catch(console.error);
+	};
+
+	const toggleEmails = () => {
+		setAllowEmails(!allowEmails);
 	};
 
 	return (
@@ -73,7 +65,7 @@ export default function SignUp() {
 					<Typography component="h1" variant="h5">
 						Sign up
 					</Typography>
-					<Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+					<Box component="form" noValidate sx={{ mt: 3 }} onSubmit={handleSubmit}>
 						<Grid container spacing={2}>
 							<Grid item xs={12} sm={6}>
 								<TextField
@@ -119,7 +111,13 @@ export default function SignUp() {
 							</Grid>
 							<Grid item xs={12}>
 								<FormControlLabel
-									control={<Checkbox value="allowExtraEmails" color="primary" />}
+									control={
+										<Checkbox
+											value="allowExtraEmails"
+											color="primary"
+											onChange={toggleEmails}
+										/>
+									}
 									label="I want to receive inspiration, marketing promotions and updates via email."
 								/>
 							</Grid>

@@ -2,21 +2,26 @@ GET http://localHost:4000/users
 
 ###
 
-POST http://localHost:4000/users
+POST http://localHost:4000/users/new
 Content-Type: application/json
 
 {
-
-    "name": "Paxtonterrydev@gmail.com",
-    "password": "January2017!!"
+    "firstName": "Jade3",
+    "lastName": "Terry",
+    "email": "AndersonJade18@gmail.com",
+    "password": "Lehicheer18",
+    "subscribed": true
 }
 
 ###
 
-POST http://localHost:4000/users/login
-Content-Type: application/json
+DELETE http://localHost:4000/users/delete/
 
-{
-    "email": "Kyle",
-    "password": "frur"
-}
+##
+
+# Turn Off Subscriptions
+PUT http://localHost:4000/users/subscriptionOff/
+
+###
+# Turn On Subscriptions
+PUT http://localHost:4000/users/subscriptionOn/
