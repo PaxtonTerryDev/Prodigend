@@ -16,9 +16,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "../../reusable/ListItems";
-import Chart from "../../reusable/Chart";
-import Deposits from "../../reusable/Deposits";
-import Orders from "../../reusable/Orders";
 import Copyright from "../../reusable/Copyright";
 import AppBar from "@mui/material/AppBar";
 import Drawer from "@mui/material/Drawer";
@@ -30,7 +27,7 @@ const mdTheme = createTheme();
 
 function DashboardContent() {
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -50,10 +47,6 @@ function DashboardContent() {
               color="inherit"
               aria-label="open drawer"
               onClick={toggleDrawer}
-              sx={{
-                marginRight: "36px",
-                ...(open && { display: "none" }),
-              }}
             >
               <MenuIcon />
             </IconButton>
@@ -78,7 +71,7 @@ function DashboardContent() {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
+        <Drawer open={open} onClose={toggleDrawer}>
           <Toolbar
             sx={{
               display: "flex",
@@ -123,7 +116,7 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  <Chart />
+                  <h1>Loan Status</h1>
                 </Paper>
               </Grid>
               {/* Recent Deposits */}
@@ -136,13 +129,18 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  <Deposits />
+                  <h1>Misc.</h1>
                 </Paper>
               </Grid>
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Orders />
+                  <h1>Documents Needed</h1>
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+                  <h1>Signatures needed</h1>
                 </Paper>
               </Grid>
             </Grid>
