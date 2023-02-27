@@ -5,10 +5,14 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
+import CreateSharpIcon from "@mui/icons-material/CreateSharp";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import UploadFileSharpIcon from "@mui/icons-material/UploadFileSharp";
+import PersonSharpIcon from "@mui/icons-material/PersonSharp";
+import BusinessCenterSharpIcon from "@mui/icons-material/BusinessCenterSharp";
+import AttachMoneySharpIcon from "@mui/icons-material/AttachMoneySharp";
+import HouseSharpIcon from "@mui/icons-material/HouseSharp";
+import HolidayVillageSharpIcon from "@mui/icons-material/HolidayVillageSharp";
 
 export const mainListItems = (
   <React.Fragment>
@@ -21,23 +25,16 @@ export const mainListItems = (
 
     <ListItemButton>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <UploadFileSharpIcon />
       </ListItemIcon>
       <ListItemText primary="Documents" />
     </ListItemButton>
 
     <ListItemButton>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <CreateSharpIcon />
       </ListItemIcon>
       <ListItemText primary="Signatures" />
-    </ListItemButton>
-
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="My LO" />
     </ListItemButton>
   </React.Fragment>
 );
@@ -50,35 +47,35 @@ export const secondaryListItems = (
 
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <PersonSharpIcon />
       </ListItemIcon>
       <ListItemText primary="Personal Information" />
     </ListItemButton>
 
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <BusinessCenterSharpIcon />
       </ListItemIcon>
       <ListItemText primary="Employment / Income" />
     </ListItemButton>
 
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AttachMoneySharpIcon />
       </ListItemIcon>
       <ListItemText primary="Assets / Liabilities" />
     </ListItemButton>
 
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <HolidayVillageSharpIcon />
       </ListItemIcon>
       <ListItemText primary="Property Owned" />
     </ListItemButton>
 
     <ListItemButton>
       <ListItemIcon>
-        <AssignmentIcon />
+        <HouseSharpIcon />
       </ListItemIcon>
       <ListItemText primary="Loan / Property Info" />
     </ListItemButton>
