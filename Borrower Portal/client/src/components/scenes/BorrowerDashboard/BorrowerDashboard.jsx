@@ -21,12 +21,13 @@ import AppBar from "@mui/material/AppBar";
 import Drawer from "@mui/material/Drawer";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { logout } from "../../../redux/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const mdTheme = createTheme();
 
 function DashboardContent() {
   const dispatch = useDispatch();
+  const { firstName, lastName } = useSelector((state) => state.user.userInfo);
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -57,7 +58,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              {` ${firstName} ${lastName}`}
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
