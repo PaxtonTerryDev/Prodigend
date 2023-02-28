@@ -44,77 +44,18 @@ function BorrowerDashboard() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-  const mainListItems = (
-    <React.Fragment>
-      <ListItemButton>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="My Loan" />
-      </ListItemButton>
-
-      <ListItemButton>
-        <ListItemIcon>
-          <UploadFileSharpIcon />
-        </ListItemIcon>
-        <ListItemText primary="Documents" />
-      </ListItemButton>
-
-      <ListItemButton>
-        <ListItemIcon>
-          <CreateSharpIcon />
-        </ListItemIcon>
-        <ListItemText primary="Signatures" />
-      </ListItemButton>
-    </React.Fragment>
-  );
-
-  const secondaryListItems = (
-    <>
-      <React.Fragment>
-        <ListSubheader component="div" inset>
-          Application Details
-        </ListSubheader>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <PersonSharpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Personal Information" />
-        </ListItemButton>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <BusinessCenterSharpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Employment / Income" />
-        </ListItemButton>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <AttachMoneySharpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Assets / Liabilities" />
-        </ListItemButton>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <HolidayVillageSharpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Property Owned" />
-        </ListItemButton>
-
-        <ListItemButton>
-          <ListItemIcon>
-            <HouseSharpIcon />
-          </ListItemIcon>
-          <ListItemText primary="Loan / Property Info" />
-        </ListItemButton>
-      </React.Fragment>
-    </>
-  );
-
+  const [mainListItems, setListItems] = useState([
+    "Dashboard",
+    "Documents",
+    "Signatures",
+  ]);
+  const [secondaryListItems, setSecondaryListItems] = useState([
+    "PersonalInfo",
+    "Employment",
+    "AssetsLiabilities",
+    "PropertyOwned",
+    "LoanInfo",
+  ]);
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -169,9 +110,27 @@ function BorrowerDashboard() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+            {mainListItems.map((item) => {
+              return (
+                <ListItemButton key={item}>
+                  <ListItemIcon>
+                    <PersonSharpIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={item} />
+                </ListItemButton>
+              );
+            })}
             <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            {secondaryListItems.map((item) => {
+              return (
+                <ListItemButton key={item}>
+                  <ListItemIcon>
+                    <PersonSharpIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={item} />
+                </ListItemButton>
+              );
+            })}
           </List>
         </Drawer>
       </Box>
