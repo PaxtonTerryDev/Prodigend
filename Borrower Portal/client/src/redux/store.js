@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dashboardSlice from "./dashboardSlice";
+import portalSlice from "./portalSlice";
 import userSlice from "./userSlice";
 export default configureStore({
   reducer: {
     user: userSlice,
-    dashboard: dashboardSlice,
+    portal: portalSlice,
   },
 });
