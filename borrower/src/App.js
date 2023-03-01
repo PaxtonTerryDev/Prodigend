@@ -5,6 +5,7 @@ import "@fontsource/roboto/700.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavigationBar from "./components/NavigationBar";
 import Sidebar from "./components/Sidebar";
+import View from "./pages/View";
 
 const primaryTheme = createTheme({
   palette: {
@@ -19,7 +20,7 @@ function App() {
     <>
       <ThemeProvider theme={primaryTheme}>
         <NavigationBar />
-        <Sidebar />
+        <View />
       </ThemeProvider>
     </>
   );

@@ -103,7 +103,7 @@ export default function Sidebar() {
         onMouseEnter={handleDrawerOpen}
         onMouseLeave={handleDrawerClose}
       >
-        <List sx={{}}>
+        <List sx={{ paddingTop: 2 }}>
           {links.map((text) => (
             <ListItem key={text} disablePadding sx={{ display: "block" }}>
               <ListItemButton

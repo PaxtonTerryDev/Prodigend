@@ -11,8 +11,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { login } from "../../redux/userSlice";
-import Copyright from "../reusable/Copyright";
+import { login } from "../../../Borrower Portal/client/src/redux/userSlice";
+import Copyright from "../../../Borrower Portal/client/src/components/reusable/Copyright";
 import { useDispatch, useSelector } from "react-redux";
 
 const logo = require("../../assets/purple-logo.png");

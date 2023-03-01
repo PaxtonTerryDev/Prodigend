@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import Sidebar from "./Sidebar";
 import ProgressStepper from "./Stepper";
+import { useSelector } from "react-redux";
 
 const logo = require("../assets/black-logo.png");
 const pages = ["Products", "Pricing", "Blog"];
@@ -22,6 +23,7 @@ const settings = ["Profile", "Account", "Dashboard", "Logout"];
 function NavigationBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { firstName, lastName } = useSelector((state) => state.user.userInfo);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -57,6 +59,23 @@ function NavigationBar() {
               >
                 <img src={logo} alt="Prodigend Logo" />
               </Box>
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                href="/"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
+                  fontFamily: "monospace",
+                  fontWeight: 700,
+                  letterSpacing: ".3rem",
+                  color: "inherit",
+                  textDecoration: "none",
+                }}
+              >
+                {`${firstName} ${lastName}`}
+              </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
                 <IconButton
                   size="large"
@@ -114,7 +133,7 @@ function NavigationBar() {
                   textDecoration: "none",
                 }}
               >
-                PRODIGEND
+                {`${firstName} ${lastName}`}
               </Typography>
 
               <Box sx={{ flexGrow: 0 }}>
