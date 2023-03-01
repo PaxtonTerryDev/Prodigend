@@ -32,6 +32,7 @@ import BusinessCenterSharpIcon from "@mui/icons-material/BusinessCenterSharp";
 import AttachMoneySharpIcon from "@mui/icons-material/AttachMoneySharp";
 import HouseSharpIcon from "@mui/icons-material/HouseSharp";
 import HolidayVillageSharpIcon from "@mui/icons-material/HolidayVillageSharp";
+import FiberNewOutlinedIcon from "@mui/icons-material/FiberNewOutlined";
 import { changePage } from "../../redux/portalSlice";
 
 const mdTheme = createTheme();
@@ -49,13 +50,27 @@ function BorrowerDashboard() {
     "Documents",
     "Signatures",
   ]);
-  const [secondaryListItems, setSecondaryListItems] = useState([
-    "PersonalInfo",
-    "Employment",
-    "AssetsLiabilities",
-    "PropertyOwned",
-    "LoanInfo",
-  ]);
+  const mainListIcons = {
+    Dashboard: <DashboardIcon />,
+    Documents: <UploadFileSharpIcon />,
+    Signatures: <CreateSharpIcon />,
+  };
+  // const [secondaryListItems, setSecondaryListItems] = useState([
+  //   "New Application",
+  //   "Personal Info",
+  //   "Employment",
+  //   "Assets and Liabilities",
+  //   "Property Owned",
+  //   "Loan Info",
+  // ]);
+  // const secondaryListIcons = {
+  //   "New Application": <FiberNewOutlinedIcon />,
+  //   "Personal Info": <PersonSharpIcon />,
+  //   Employment: <BusinessCenterSharpIcon />,
+  //   "Assets and Liabilities": <AttachMoneySharpIcon />,
+  //   "Property Owned": <HouseSharpIcon />,
+  //   "Loan Info": <HolidayVillageSharpIcon />,
+  // };
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -108,29 +123,27 @@ function BorrowerDashboard() {
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
-          <Divider />
+          {/* <Divider /> */}
+          <ListSubheader>My Loan</ListSubheader>
           <List component="nav">
             {mainListItems.map((item) => {
               return (
                 <ListItemButton key={item}>
-                  <ListItemIcon>
-                    <PersonSharpIcon />
-                  </ListItemIcon>
+                  <ListItemIcon>{mainListIcons[item]}</ListItemIcon>
                   <ListItemText primary={item} />
                 </ListItemButton>
               );
             })}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems.map((item) => {
-              return (
+            {/* <Divider sx={{ my: 1 }} />
+             <ListSubheader>Application Details</ListSubheader>
+             {secondaryListItems.map((item) => {
+               return (
                 <ListItemButton key={item}>
-                  <ListItemIcon>
-                    <PersonSharpIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={item} />
-                </ListItemButton>
-              );
-            })}
+                   <ListItemIcon>{secondaryListIcons[item]}</ListItemIcon>
+                 <ListItemText primary={item} />
+                 </ListItemButton>
+               );
+             })} */}
           </List>
         </Drawer>
       </Box>
