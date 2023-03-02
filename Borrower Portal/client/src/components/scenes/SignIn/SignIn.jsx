@@ -29,20 +29,6 @@ export default function SignIn() {
 			email: data.get("email"),
 			password: data.get("password"),
 		};
-		await authenticateUser(user);
-	};
-
-	const authenticateUser = (data) => {
-		fetch("https://localHost:4000/users/login", {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ email: data.email, password: data.password }),
-		})
-			.then((response) => response.json())
-			.then((response) => console.log(JSON.stringify(response)));
 	};
 
 	return (
