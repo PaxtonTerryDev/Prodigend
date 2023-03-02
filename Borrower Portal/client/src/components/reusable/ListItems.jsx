@@ -5,68 +5,79 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import LayersIcon from "@mui/icons-material/Layers";
+import CreateSharpIcon from "@mui/icons-material/CreateSharp";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import UploadFileSharpIcon from "@mui/icons-material/UploadFileSharp";
+import PersonSharpIcon from "@mui/icons-material/PersonSharp";
+import BusinessCenterSharpIcon from "@mui/icons-material/BusinessCenterSharp";
+import AttachMoneySharpIcon from "@mui/icons-material/AttachMoneySharp";
+import HouseSharpIcon from "@mui/icons-material/HouseSharp";
+import HolidayVillageSharpIcon from "@mui/icons-material/HolidayVillageSharp";
 
 export const mainListItems = (
-	<React.Fragment>
-		<ListItemButton>
-			<ListItemIcon>
-				<DashboardIcon />
-			</ListItemIcon>
-			<ListItemText primary="Dashboard" />
-		</ListItemButton>
-		<ListItemButton>
-			<ListItemIcon>
-				<ShoppingCartIcon />
-			</ListItemIcon>
-			<ListItemText primary="Orders" />
-		</ListItemButton>
-		<ListItemButton>
-			<ListItemIcon>
-				<PeopleIcon />
-			</ListItemIcon>
-			<ListItemText primary="Customers" />
-		</ListItemButton>
-		<ListItemButton>
-			<ListItemIcon>
-				<BarChartIcon />
-			</ListItemIcon>
-			<ListItemText primary="Reports" />
-		</ListItemButton>
-		<ListItemButton>
-			<ListItemIcon>
-				<LayersIcon />
-			</ListItemIcon>
-			<ListItemText primary="Integrations" />
-		</ListItemButton>
-	</React.Fragment>
+  <React.Fragment>
+    <ListItemButton>
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="My Loan" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <UploadFileSharpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Documents" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <CreateSharpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Signatures" />
+    </ListItemButton>
+  </React.Fragment>
 );
 
 export const secondaryListItems = (
-	<React.Fragment>
-		<ListSubheader component="div" inset>
-			Saved reports
-		</ListSubheader>
-		<ListItemButton>
-			<ListItemIcon>
-				<AssignmentIcon />
-			</ListItemIcon>
-			<ListItemText primary="Current month" />
-		</ListItemButton>
-		<ListItemButton>
-			<ListItemIcon>
-				<AssignmentIcon />
-			</ListItemIcon>
-			<ListItemText primary="Last quarter" />
-		</ListItemButton>
-		<ListItemButton>
-			<ListItemIcon>
-				<AssignmentIcon />
-			</ListItemIcon>
-			<ListItemText primary="Year-end sale" />
-		</ListItemButton>
-	</React.Fragment>
+  <React.Fragment>
+    <ListSubheader component="div" inset>
+      Application Details
+    </ListSubheader>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <PersonSharpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Personal Information" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <BusinessCenterSharpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Employment / Income" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <AttachMoneySharpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Assets / Liabilities" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <HolidayVillageSharpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Property Owned" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <HouseSharpIcon />
+      </ListItemIcon>
+      <ListItemText primary="Loan / Property Info" />
+    </ListItemButton>
+  </React.Fragment>
 );
